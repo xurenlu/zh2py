@@ -1,0 +1,735 @@
+bcmp（比较内存内容）
+相关函数
+bcmp，strcasecmp，strcmp，strcoll，strncmp，strncasecmp
+表头文件
+#include<string.h>
+定义函数
+int bcmp ( const void *s1,const void * s2,int n);
+函数说明
+bcmp()用来比较s1和s2所指的内存区间前n个字节，若参数n为0，则返回0。
+返回值
+若参数s1 和s2 所指的内存内容都完全相同则返回0 值，否则返回非零值。
+附加说明
+建议使用memcmp()取代。
+范例
+参考memcmp()。
+　
+
+
+
+bcopy（拷贝内存内容）
+相关函数
+memccpy，memcpy，memmove，strcpy，ctrncpy
+表头文件
+#include <string.h>
+定义函数
+void bcopy ( const void *src,void *dest ,int n);
+函数说明
+bcopy()与memcpy()一样都是用来拷贝src所指的内存内容前n个字节到dest所指的地址，不过参数src与dest在传给函数时是相反的位置。
+返回值
+
+附加说明
+建议使用memcpy()取代
+范例
+#include<string.h>
+main()
+{
+char dest[30]=”string(a)”;
+char src[30]=”string\0string”;
+int i;
+bcopy(src,dest,30);/* src指针放在前*/
+printf(bcopy(): “)
+for(i=0;i<30;i++)
+printf(“%c”,dest[i]);
+memcpy(dest src,30); /*dest指针放在钱*/
+printf(‘\nmemcpy() : “);
+for(i=0;i<30;i++)
+printf(“%c”,dest[i]);
+执行
+bcopy() : string string
+memcpy() :string sring
+　
+
+
+
+bzero（将一段内存内容全清为零）
+相关函数
+memset，swab
+表头文件
+#include<string.h>
+定义函数
+void bzero(void *s,int n)；
+函数说明
+bzero()会将参数s所指的内存区域前n个字节，全部设为零值。相当于调用memset((void*)s,0,size_tn);
+返回值
+
+附加说明
+建议使用memset取代
+范例
+参考memset()。
+　
+
+
+
+index（查找字符串中第一个出现的指定字符）
+相关函数
+rindex，srechr，strrchr
+表头文件
+#include<string.h>
+定义函数
+char * index( const char *s, int c);
+函数说明
+index()用来找出参数s字符串中第一个出现的参数c地址，然后将该字符出现的地址返回。字符串结束字符(NULL)也视为字符串一部分。
+返回值
+如果找到指定的字符则返回该字符所在地址，否则返回0。
+范例
+#include<string.h>
+main()
+{
+char *s =”0123456789012345678901234567890”;
+char *p;
+p =index(s,’5’);
+printf(%s\n”,p);
+}
+执行
+5.68E+25
+　
+
+
+
+memccpy（拷贝内存内容）
+相关函数
+bcopy，memcpy，memmove，strcpy，strncpy
+表头文件
+#include<string.h>
+定义函数
+void * memccpy(void *dest, const void * src, int c,size_t n);
+函数说明
+memccpy()用来拷贝src所指的内存内容前n个字节到dest所指的地址上。与memcpy()不同的是，memccpy()会在复制时检查参数c是否出现，若是则返回dest中值为c的下一个字节地址。
+返回值
+返回指向dest中值为c的下一个字节指针。返回值为0表示在src所指内存前n个字节中没有值为c的字节。
+范例
+#include<string.h>
+main()
+{
+char a[]="string[a]";
+char b[]="string(b)";
+memccpy(a,b,'B',sizeof(b));
+printf("memccpy():%s\n",a);
+}
+执行
+memccpy():string(b)
+　
+
+
+
+memchr（在某一内存范围中查找一特定字符）
+相关函数
+index，rindex，strchr，strpbrk，strrchr，strsep，strspn，strstr
+表头文件
+#include<string.h>
+定义函数
+void * memchr(const void *s,int c,size_t n);
+函数说明
+memchr()从头开始搜寻s所指的内存内容前n个字节，直到发现第一个值为c的字节，则返回指向该字节的指针。
+返回值
+如果找到指定的字节则返回该字节的指针，否则返回0。
+范例
+#include <string.h>
+main()
+{
+char *s="0123456789012345678901234567890";
+char *p;
+p=memchr(s,'5',10);
+printf("%s\n",p);
+}
+执行
+5.68E+25
+　
+
+
+
+memcmp（比较内存内容）
+相关函数
+bcmp，strcasecmp，strcmp，strcoll，strncmp，strncasecmp
+表头文件
+#include<string.h>
+定义函数
+int memcmp (const void *s1,const void *s2,size_t n);
+函数说明
+memcmp()用来比较s1和s2所指的内存区间前n个字符。字符串大小的比较是以ASCII码表上的顺序来决定，次顺序亦为字符的值。memcmp()首先将s1第一个字符值减去s2第一个字符的值，若差为0则再继续比较下个字符，若差值不为0则将差值返回。例如，字符串"Ac"和"ba"比较则会返回字符'A'(65)和'b'(98)的差值(－33)。
+返回值
+若参数s1和s2所指的内存内容都完全相同则返回0值。s1若大于s2则返回大于0的值。s1若小于s2则返回小于0的值。
+范例
+#include<string.h>
+main()
+{
+char *a ="aBcDeF";
+char *b="AbCdEf";
+char *c="aacdef";
+char *d="aBcDeF";
+printf("memcmp(a,b):%d\n",memcmp((void*)a,(void*) b,6));
+printf("memcmp(a,c):%d\n",memcmp((void*)a,(void*) c,6));
+printf("memcmp(a,d):%d\n",memcmp((void*)a,(void*) d,6));
+执行
+memcmp(a,b):1 /*字符串a>字符串b，返回1*/
+memcmp(a,c):-1 /* 字符串a<字符串c,返回－1*/
+memcmp(a,d):0 /*字符串a＝字符串d，返回0*/
+　
+
+
+
+memcpy（拷贝内存内容）
+相关函数
+bcopy，memccpy，memcpy，memmove，strcpy，strncpy
+表头文件
+#include<string.h>
+定义函数
+void * memcpy (void * dest ,const void *src, size_t n);
+函数说明
+memcpy()用来拷贝src所指的内存内容前n个字节到dest所指的内存地址上。与strcpy()不同的是，memcpy()会完整的复制n个字节，不会因为遇到字符串结束'\0'而结束。
+返回值
+返回指向dest的指针。
+附加说明
+指针src和dest所指的内存区域不可重叠。
+范例
+#include<string.h>
+main()
+{
+char a[30]="string (a)";
+char b[30]="string\0string";
+int i;
+strcpy(a,b);
+printf("strcpy():");
+for(i=0;i<30;i++)
+printf("%c",a[i]);
+memcpy(a,b,30);
+printf("\nmemcpy() :");
+for(i=0;i<30;i++)
+printf("%c",a[i]);
+}
+执行
+strcpy() : string a )
+memcpy() : string string
+　
+
+
+
+memmove（拷贝内存内容）
+相关函数
+bcopy，memccpy，memcpy，strcpy，strncpy
+表头文件
+#include<string.h>
+定义函数
+void * memmove(void *dest,const void *src,size_t n);
+函数说明
+memmove()与memcpy()一样都是用来拷贝src所指的内存内容前n个字节到dest所指的地址上。不同的是，当src和dest所指的内存区域重叠时，memmove()仍然可以正确的处理，不过执行效率上会比使用memcpy()略慢些。
+返回值
+返回指向dest的指针。
+附加说明
+指针src和dest所指的内存区域可以重叠。
+范例
+参考memcpy()。
+　
+
+
+
+memset（将一段内存空间填入某值）
+相关函数
+bzero，swab
+表头文件
+#include<string.h>
+定义函数
+void * memset (void *s ,int c, size_t n);
+函数说明
+memset()会将参数s所指的内存区域前n个字节以参数c填入，然后返回指向s的指针。在编写程序时，若需要将某一数组作初始化，memset()会相当方便。
+返回值
+返回指向s的指针。
+附加说明
+参数c虽声明为int， 但必须是unsigned char ，所以范围在0到255之间。
+范例
+#include <string.h>
+main()
+{
+char s[30];
+memset (s,'A',sizeof(s));
+s[30]='\0';
+printf("%s\n",s);
+}
+执行
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+　
+
+
+
+rindex（查找字符串中最后一个出现的指定字符）
+相关函数
+index，memchr，strchr，strrchr
+表头文件
+#include<string.h>
+定义函数
+char * rindex( const char *s,int c);
+函数说明
+rindex()用来找出参数s字符串中最后一个出现的参数c地址，然后将该字符出现的地址返回。字符串结束字符(NULL)也视为字符串一部分。
+返回值
+如果找到指定的字符则返回该字符所在的地址，否则返回0。
+范例
+#include <string.h>
+mian()
+{
+char *s ="0123456789012345678901234567890";
+char *p;
+p=rindex(s,'5');
+printf("%s\n",p);
+}
+执行
+567890
+　
+
+
+
+strcasecmp（忽略大小写比较字符串）
+相关函数
+bcmp，memcmp，strcmp，strcoll，strncmp
+表头文件
+#include<string.h>
+定义函数
+int strcasecmp (const char *s1, const char *s2);
+函数说明
+strcasecmp()用来比较参数s1和s2字符串，比较时会自动忽略大小写的差异。
+返回值
+若参数s1和s2字符串相同则返回0。s1长度大于s2长度则返回大于0 的值，s1 长度若小于s2 长度则返回小于0的值。
+范例
+#include <string.h>
+main()
+{
+char *a="aBcDeF";
+char *b="AbCdEf";
+if(!strcasecmp(a,b))
+printf("%s=%s\n",a,b);
+}
+执行
+aBcDeF=AbCdEf
+　
+
+
+
+strcat（连接两字符串）
+相关函数
+bcopy，memccpy，memcpy，strcpy，strncpy
+表头文件
+#include <string.h>
+定义函数
+char *strcat (char *dest,const char *src);
+函数说明
+strcat()会将参数src字符串拷贝到参数dest所指的字符串尾。第一个参数dest要有足够的空间来容纳要拷贝的字符串。
+返回值
+返回参数dest的字符串起始地址
+范例
+#include <string.h.>
+main()
+{
+char a[30]="string(1)";
+char b[]="string(2)";
+printf("before strcat() : %s\n",a);
+printf("after strcat() : %s\n",strcat(a,b));
+}
+执行
+before strcat () : string(1)
+after strcat () : string(1)string(2)
+　
+
+
+
+strchr（查找字符串中第一个出现的指定字符）
+相关函数
+index，memchr，rinex，strbrk，strsep，strspn，strstr，strtok
+表头文件
+#include<string.h>
+定义函数
+char * strchr (const char *s,int c);
+函数说明
+strchr()用来找出参数s字符串中第一个出现的参数c地址，然后将该字符出现的地址返回。
+返回值
+如果找到指定的字符则返回该字符所在地址，否则返回0。
+范例
+#include<string.h>
+main()
+{
+char *s=0123456789012345678901234567890”;
+char *p;
+p=strchr(s,'5');
+printf("%s\n",p);
+}
+执行
+5.68E+25
+　
+
+
+
+strcmp（比较字符串）
+相关函数
+bcmp，memcmp，strcasecmp，strncasecmp，strcoll
+表头文件
+#include<string.h>
+定义函数
+int strcmp(const char *s1,const char *s2);
+函数说明
+strcmp()用来比较参数s1和s2字符串。字符串大小的比较是以ASCII 码表上的顺序来决定，此顺序亦为字符的值。strcmp()首先将s1第一个字符值减去s2第一个字符值，若差值为0则再继续比较下个字符，若差值不为0则将差值返回。例如字符串"Ac"和"ba"比较则会返回字符"A"(65)和'b'(98)的差值(－33)。
+返回值
+若参数s1和s2字符串相同则返回0。s1若大于s2则返回大于0的值。s1若小于s2则返回小于0 的值。
+范例
+#include<string.h>
+main()
+{
+char *a="aBcDeF";
+char *b="AbCdEf";
+char *c="aacdef";
+char *d="aBcDeF";
+printf("strcmp(a,b) : %d\n",strcmp(a,b));
+printf("strcmp(a,c) : %d\n",strcmp(a,c));
+printf("strcmp(a,d) : %d\n",strcmp(a,d));
+}
+执行
+strcmp(a,b) : 32
+strcmp(a,c) :-31
+strcmp(a,d) : 0
+　
+
+
+
+strcoll（采用目前区域的字符排列次序来比较字符串）
+相关函数
+strcmp，bcmp，memcmp，strcasecmp，strncasecmp
+表头文件
+#include<string.h>
+定义函数
+int strcoll( const char *s1, const char *s2);
+函数说明
+strcoll()会依环境变量LC_COLLATE所指定的文字排列次序来比较s1和s2 字符串。
+返回值
+若参数s1和s2字符串相同则返回0。s1若大于s2则返回大于0的值。s1若小于s2则返回小于0 的值。
+附加说明
+若LC_COLLATE为"POSIX"或"C"，则strcoll()与strcmp()作用完全相同。
+范例
+参考strcmp()。
+　
+
+
+
+strcpy（拷贝字符串）
+相关函数
+bcopy，memcpy，memccpy，memmove
+表头文件
+#include<string.h>
+定义函数
+char *strcpy(char *dest,const char *src);
+函数说明
+strcpy()会将参数src字符串拷贝至参数dest所指的地址。
+返回值
+返回参数dest的字符串起始地址。
+附加说明
+如果参数dest所指的内存空间不够大，可能会造成缓冲溢出(buffer Overflow)的错误情况，在编写程序时请特别留意，或者用strncpy()来取代。
+范例
+#include<string.h>
+main()
+{
+char a[30]="string(1)";
+char b[]="string(2)";
+printf("before strcpy() :%s\n",a);
+printf("after strcpy() :%s\n",strcpy(a,b));
+}
+执行
+before strcpy() :string(1)
+after strcpy() :string(2)
+　
+
+
+
+strcspn（返回字符串中连续不含指定字符串内容的字符数）
+相关函数
+strspn
+表头文件
+#inclued<string.h>
+定义函数
+size_t strcspn ( const char *s,const char * reject);
+函数说明
+strcspn()从参数s字符串的开头计算连续的字符，而这些字符都完全不在参数reject 所指的字符串中。简单地说，若strcspn()返回的数值为n，则代表字符串s开头连续有n个字符都不含字符串reject内的字符。
+返回值
+返回字符串s开头连续不含字符串reject内的字符数目。
+范例
+#include <string.h>
+main()
+{
+char *str="Linux was first developed for 386/486-based pcs.";
+printf("%d\n",strcspn(str," "));
+printf("%d\n",strcspn(str,"/-"));
+printf("%d\n",strcspn(str,"1234567890"));
+}
+执行
+5 /*只计算到“ ”的出现，所以返回“Linux”的长度*/
+33 /*计算到出现“/”或“－”，所以返回到“6”的长度*/
+30 /* 计算到出现数字字符为止，所以返回“3”出现前的长度*/
+　
+
+
+
+strdup（复制字符串）
+相关函数
+calloc，malloc，realloc，free
+表头文件
+#include<string.h>
+定义函数
+char * strdup( const char *s);
+函数说明
+strdup()会先用maolloc()配置与参数s字符串相同的空间大小，然后将参数s字符串的内容复制到该内存地址，然后把该地址返回。该地址最后可以利用free()来释放。
+返回值
+返回一字符串指针，该指针指向复制后的新字符串地址。若返回NULL表示内存不足。
+范例
+#include<string.h>
+main()
+{
+char a[]="strdup";
+char *b;
+b=strdup(a);
+printf("b[ ]=\"%s\"\n",b);
+}
+执行
+b[ ]="strdup"
+　
+
+
+
+strlen（返回字符串长度）
+相关函数
+
+表头文件
+#include<string.h>
+定义函数
+size_t strlen (const char *s);
+函数说明
+strlen()用来计算指定的字符串s的长度，不包括结束字符"\0"。
+返回值
+返回字符串s的字符数。
+范例
+/*取得字符串str的长度*/
+#include<string.h>
+main()
+{
+char *str = "12345678";
+printf("str length = %d\n", strlen(str));
+}
+执行
+str length = 8
+　
+
+
+
+strncasecmp（忽略大小写比较字符串）
+相关函数
+bcmp，memcmp，strcmp，strcoll，strncmp
+表头文件
+#include<string.h>
+定义函数
+int strncasecmp(const char *s1,const char *s2,size_t n);
+函数说明
+strncasecmp()用来比较参数s1和s2字符串前n个字符，比较时会自动忽略大小写的差异。
+返回值
+若参数s1和s2 字符串相同则返回0。s1 若大于s2则返回大于0的值，s1若小于s2则返回小于0 的值。
+范例
+#include<string.h>
+main()
+{
+char *a="aBcDeF";
+char *b="AbCdEf";
+if(!strncasecmp(a,b))
+printf("%s =%s\n",a,b);
+}
+执行
+aBcDef=AbCdEf
+　
+
+
+
+strncat（连接两字符串）
+相关函数
+bcopy，memccpy，memecpy，strcpy，strncpy
+表头文件
+#inclue <string.h>
+定义函数
+char * strncat(char *dest,const char *src,size_t n);
+函数说明
+strncat()会将参数src字符串拷贝n个字符到参数dest所指的字符串尾。第一个参数dest要有足够的空间来容纳要拷贝的字符串。
+返回值
+返回参数dest的字符串起始地址。
+范例
+#include <string.h>
+main()
+{
+char a[30]="string(1)";
+char b[]="string(2)";
+printf("before strnact() :%s\n", a);
+printf("after strncat() :%s\n", strncat(a,b,6));
+}
+执行
+before strnact() : string(1)
+after strncat() : string(1) string
+　
+
+
+
+strncpy（拷贝字符串）
+相关函数
+bcopy，memccpy，memcpy，memmove
+表头文件
+#include<string.h>
+定义函数
+char * strncpy(char *dest,const char *src,size_t n);
+函数说明
+strncpy()会将参数src字符串拷贝前n个字符至参数dest所指的地址。
+返回值
+返回参数dest的字符串起始地址。
+范例
+#inclue <string.h>
+main()
+{
+char a[30]="string(1)";
+char b[]="string(2)";
+printf("before strncpy() : %s\n",a);
+printf("after strncpy() : %s\n",strncpy(a,b,6));
+}
+执行
+before strncpy() : string(1)
+after strncpy() : string(1)
+　
+
+
+
+strpbrk（查找字符串中第一个出现的指定字符）
+相关函数
+index，memchr，rindex，strpbrk，strsep，strspn，strstr，strtok
+表头文件
+#include <include.h>
+定义函数
+char *strpbrk(const char *s,const char *accept);
+函数说明
+strpbrk()用来找出参数s 字符串中最先出现存在参数accept 字符串中的任意字符。
+返回值
+如果找到指定的字符则返回该字符所在地址，否则返回0。
+范例
+#include <string.h>
+main()
+{
+char *s="0123456789012345678901234567890";
+char *p;
+p=strpbrk(s,"a1 839"); /*1会最先在s字符串中找到*/
+printf("%s\n",p);
+p=strprk(s,"4398");/*3 会最先在s 字符串中找到*/
+printf("%s\n",p);
+执行
+1.23E+29
+　
+
+
+
+strrchr（查找字符串中最后出现的指定字符）
+相关函数
+index，memchr，rindex，strpbrk，strsep，strspn，strstr，strtok
+表头文件
+#include<string.h>
+定义函数
+char * strrchr(const char *s, int c);
+函数说明
+strrchr()用来找出参数s字符串中最后一个出现的参数c地址，然后将该字符出现的地址返回。
+返回值
+如果找到指定的字符则返回该字符所在地址，否则返回0。
+范例
+#include<string.h>
+main()
+{
+char *s="0123456789012345678901234567890";
+char *p;
+p=strrchr(s,'5');
+printf("%s\n",p);
+}
+执行
+567890
+　
+
+
+
+strspn（返回字符串中连续不含指定字符串内容的字符数）
+相关函数
+strcspn，strchr，strpbrk，strsep，strstr
+表头文件
+#include<string.h>
+定义函数
+size_t strspn (const char *s,const char * accept);
+函数说明
+strspn()从参数s 字符串的开头计算连续的字符，而这些字符都完全是accept 所指字符串中的字符。简单的说，若strspn()返回的数值为n，则代表字符串s 开头连续有n 个字符都是属于字符串accept内的字符。
+返回值
+返回字符串s开头连续包含字符串accept内的字符数目。
+范例
+#include<string.h>
+main()
+{
+char *str="Linux was first developed for 386/486-based PCs.";
+char *t1="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+printf("%d\n",strspn(str,t1));
+}
+执行
+5 /*计算大小写字母。不包含“ ”，所以返回Linux的长度。*/
+　
+
+
+
+strstr（在一字符串中查找指定的字符串）
+相关函数
+index，memchr，rindex，strchr，strpbrk，strsep，strspn，strtok
+表头文件
+#include<string.h>
+定义函数
+char *strstr(const char *haystack,const char *needle);
+函数说明
+strstr()会从字符串haystack 中搜寻字符串needle，并将第一次出现的地址返回。
+返回值
+返回指定字符串第一次出现的地址，否则返回0。
+范例
+#include<string.h>
+main()
+{
+char * s="012345678901234567890123456789";
+char *p;
+p= strstr(s,"901");
+printf("%s\n",p);
+}
+执行
+9.01E+21
+　
+
+
+
+strtok（分割字符串）
+相关函数
+index，memchr，rindex，strpbrk，strsep，strspn，strstr
+表头文件
+#include<string.h>
+定义函数
+char * strtok(char *s,const char *delim);
+函数说明
+strtok()用来将字符串分割成一个个片段。参数s指向欲分割的字符串，参数delim则为分割字符串，当strtok()在参数s的字符串中发现到参数delim的分割字符时则会将该字符改为\0 字符。在第一次调用时，strtok()必需给予参数s字符串，往后的调用则将参数s设置成NULL。每次调用成功则返回下一个分割后的字符串指针。
+返回值
+返回下一个分割后的字符串指针，如果已无从分割则返回NULL。
+范例
+#include<string.h>
+main()
+{
+char s[]="ab-cd : ef;gh :i-jkl;mnop;qrs-tu: vwx-y;z";
+char *delim="-: ";
+char *p;
+printf("%s ";strtok(s,delim));
+while((p=strtok(NULL,delim)))printf("%s ",p);
+printf("\n");
+}
+执行
+ab cd ef;gh i jkl;mnop;qrs tu vwx y;z /*－与:字符已经被\0 字符取代*/

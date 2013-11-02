@@ -1,8 +1,0 @@
-zh2py.lo: /Users/renlu/Dev/php-5.4.18/ext/zh2py/zh2py.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/renlu/Dev/php-5.4.18/ext/zh2py $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/renlu/Dev/php-5.4.18/ext/zh2py/zh2py.c -o zh2py.lo 
-$(phplibdir)/zh2py.la: ./zh2py.la
-	$(LIBTOOL) --mode=install cp ./zh2py.la $(phplibdir)
-
-./zh2py.la: $(shared_objects_zh2py) $(ZH2PY_SHARED_DEPENDENCIES)
-	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_zh2py) $(ZH2PY_SHARED_LIBADD)
-

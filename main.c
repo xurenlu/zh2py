@@ -22,13 +22,15 @@ int main(int argc,char ** argv){
     char * final_result;
     FILE * fp = fopen("./gbkall","r");
     char buf[1024];
+    int result_len = 0;
     while(fgets(buf,1024,fp)){
         l=strlen(buf);
         final_result = NULL;
-        final_result = zh2py_transform(zh2py_res_table_root,(char *)buf);
+        final_result = zh2py_transform(zh2py_res_table_root,(char *)buf,&result_len);
         if(final_result==NULL){
             printf("Got an error");
         }
+        printf("result len:%d\n",result_len);
         printf("%s\n",final_result);
     }
     fclose(fp);

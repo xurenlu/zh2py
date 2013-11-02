@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("zh2py", "for zh2py support", "no");
+
+// Otherwise, use ARG_ENABLE
+// ARG_ENABLE("zh2py", "enable zh2py support", "no");
+
+if (PHP_ZH2PY != "no") {
+	EXTENSION("zh2py", "zh2py.c");
+}
+

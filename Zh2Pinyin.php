@@ -463,7 +463,9 @@ class Zh2Pinyin {
 }
 $file = "./gbkall";
 $content = file_get_contents($file);
-$t1=microtime();
- echo zh2pinyin::zh2pinyin($content);
-$t2=microtime();
+$t1=array_sum(explode(" ",microtime()));
+for($i=0;$i<100;$i++){
+      echo zh2pinyin::zh2pinyin($content);
+}
+$t2=array_sum(explode(" ",microtime()));
 echo "cost time:".($t2-$t1)." seconds";

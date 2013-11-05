@@ -1,7 +1,7 @@
-srcdir = /Users/renlu/Dev/php-5.4.18/ext/zh2py
-builddir = /Users/renlu/Dev/php-5.4.18/ext/zh2py
-top_srcdir = /Users/renlu/Dev/php-5.4.18/ext/zh2py
-top_builddir = /Users/renlu/Dev/php-5.4.18/ext/zh2py
+srcdir = /Users/renlu/Dev/pinyin/utils/php-ext
+builddir = /Users/renlu/Dev/pinyin/utils/php-ext
+top_srcdir = /Users/renlu/Dev/pinyin/utils/php-ext
+top_builddir = /Users/renlu/Dev/pinyin/utils/php-ext
 EGREP = /usr/bin/grep -E
 SED = /usr/bin/sed
 CONFIGURE_COMMAND = './configure'
@@ -21,7 +21,7 @@ prefix = /usr/local/Cellar/php54/5.4.15
 exec_prefix = $(prefix)
 libdir = ${exec_prefix}/lib
 prefix = /usr/local/Cellar/php54/5.4.15
-phplibdir = /Users/renlu/Dev/php-5.4.18/ext/zh2py/modules
+phplibdir = /Users/renlu/Dev/pinyin/utils/php-ext/modules
 phpincludedir = /usr/local/Cellar/php54/5.4.15/include/php
 CC = cc
 CFLAGS = -g -O2
@@ -165,8 +165,8 @@ distclean: clean
 
 .PHONY: all clean install distclean test
 .NOEXPORT:
-zh2py.lo: /Users/renlu/Dev/php-5.4.18/ext/zh2py/zh2py.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/renlu/Dev/php-5.4.18/ext/zh2py $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/renlu/Dev/php-5.4.18/ext/zh2py/zh2py.c -o zh2py.lo 
+zh2py.lo: /Users/renlu/Dev/pinyin/utils/php-ext/zh2py.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/Users/renlu/Dev/pinyin/utils/php-ext $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/renlu/Dev/pinyin/utils/php-ext/zh2py.c -o zh2py.lo 
 $(phplibdir)/zh2py.la: ./zh2py.la
 	$(LIBTOOL) --mode=install cp ./zh2py.la $(phplibdir)
 

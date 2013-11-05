@@ -54,8 +54,8 @@ char * zh2py_transform(zh2py_table_root * table_root, char * buf,int * result_le
         }else{
             if(code>0 && code<160){
                 *(result+pos)  =  buf[i];
-                pos++;
-                *(result+pos) = ' ';
+                //pos++;
+                //*(result+pos) = '';
                 pos ++;
             }
         }

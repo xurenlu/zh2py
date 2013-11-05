@@ -24,16 +24,3 @@ if($tmp = zh2py_load_table("./gbk.dict")){
     throw new Exception("Can't load dict:./gbk.dict");
 }
 exit();
-/**
- * not finished;
- * */
-$z2p = new Zh2Py();
-if( $z2p->table_loaded()){
-    print $z2p->get_pinyin($chinese)."\n";
-}
-$z2p->unload_table();
-if($z2p->load_table("./gbk.dict")){
-    print $z2p->get_pinyin($chinese)."\n";
-}else{
-    throw new Exception("Can't load dict:./gbk.dict");
-}

@@ -233,6 +233,7 @@ PHP_FUNCTION(zh2py_get_pinyin){
 PHP_FUNCTION(zh2py_free_last_result){
     if(zh2py_last_result!=NULL){
         free(zh2py_last_result);
+        zh2py_last_result = NULL;
         RETURN_BOOL(true);
     }
     RETURN_BOOL(false);
